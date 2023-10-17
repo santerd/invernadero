@@ -1,69 +1,79 @@
 import random
-import numpy as np
 import time
 
 class Invernadero:
-    def __init__(self, filas, columnas, temperatura, humedad, materiales, tamano):
+    def __init__(self, filas, columnas):
         self.filas = filas
         self.columnas = columnas
-        self.temperatura = temperatura
-        self.humedad = humedad
-        self.materiales = materiales
-        self.tamano = tamano
-        self.invernadero = np.zeros((filas, columnas), dtype=int)
-        self.hora = 6  # Comienza antes del día
+        self.invernadero = [[None for _ in range(columnas)] for _ in range(filas)]
+        self.condiciones_ambientales = {'temperatura': 0, 'humedad': 0}
+
+    def establecer_condiciones_ambientales(self):
+        self.condiciones_ambientales['temperatura'] = random.uniform(15, 30)
+        self.condiciones_ambientales['humedad'] = random.uniform(40, 80)
+
+    def mostrar_condiciones_ambientales(self, hora):
+        if 7 <= hora <= 19:
+            momento = "Día ☀️ "
+        else:
+            momento = "Noche 🌙 "
+        print(f"{momento} Hora {hora}:")
+        print(f"Temperatura: {self.condiciones_ambientales['temperatura']:.2f}°C")
+        print(f"Humedad: {self.condiciones_ambientales['humedad']:.2f}%")
+
+    def germinar_chiles(self):
+        for fila in range(self.filas):
+            for col in range(self.columnas):
+                if self.invernadero[fila][col] is not None:
+                    chile = self.invernadero[fila][col]
+                    if 7 <= chile.hora <= 19 and 25 <= self.condiciones_ambientales['temperatura'] <= 30:
+                        if 50 <= self.condiciones_ambientales['humedad'] <= 70:
+                            chile.vida += 2
+                    elif 1 <= chile.hora <= 6 or 20 <= chile.hora <= 24:
+                        if 15 <= self.condiciones_ambientales['temperatura'] <= 20:
+                            if 50 <= self.condiciones_ambientales['humedad'] <= 70:
+                                chile.vida += 2
 
     def mostrar_invernadero(self):
-        # Mostrar Dia o Noche y Hora
-        if 7 <= self.hora <= 19:
-            print("☀️ Día")
-        else:
-            print("🌙 Noche")
-        print(f"Hora: {self.hora}:00")
-
-        # Mostrar Invernadero
         for fila in self.invernadero:
-            for celda in fila:
-                if celda == 0:
-                    print('🌱', end=' ')
-                elif celda == 1:
-                    print('🌶️', end=' ')
+            for chile in fila:
+                if chile is None:
+                    print("⬜", end=' ')
+                elif chile.vida <= 15:
+                    print("🌱", end=' ')
+                else:
+                    print("🌶️", end=' ')
             print()
+        print("\n" + "-" * 20 + "\n")
 
-        # Mostrar Parametros
-        print(f"Temperatura: {self.temperatura:.2f}°C")
-        print(f"Humedad: {self.humedad:.2f}%")
-        print(f"Materiales: {', '.join(self.materiales)}")
-        print(f"Tamaño: {self.tamano} m²")
+class Chile:
+    def __init__(self, hora):
+        self.hora = hora
+        self.vida = 0
 
-    def crecimiento_chiles(self):
-        new_invernadero = np.copy(self.invernadero)
+def main():
+    filas = 5
+    columnas = 5
+    invernadero = Invernadero(filas, columnas)
 
-        for i in range(self.filas):
-            for j in range(self.columnas):
-                if self.invernadero[i][j] == 0:  # Si no hay chile en la celda
-                    if (7 <= self.hora <= 19 and 25 <= self.temperatura <= 30 and 50 <= self.humedad <= 70) or (0 <= self.hora < 7 and 15 <= self.temperatura <= 20 and 50 <= self.humedad <= 70):
-                        # Hay condiciones de temperatura, humedad y tiempo para germinar
-                        if random.random() < 0.2:  # Probabilidad de germinación
-                            new_invernadero[i][j] = 1  # Germinar chile
-        return new_invernadero
+    for dia in range(3):
+        print(f"Día {dia + 1}:")
 
-    def avanzar_hora(self):
-        self.hora = (self.hora + 1) % 24
+        for hora in range(1, 25):
+            invernadero.establecer_condiciones_ambientales()
+            invernadero.mostrar_condiciones_ambientales(hora)
+            
+            # Generar chiles en 3 ubicaciones aleatorias
+            for _ in range(3):
+                fila = random.randint(0, filas - 1)
+                col = random.randint(0, columnas - 1)
+                if invernadero.invernadero[fila][col] is None:
+                    invernadero.invernadero[fila][col] = Chile(hora)
 
-    def simulacion_invernadero(self, horas):
-        for i in range(horas):
-            self.avanzar_hora()
-            if self.hora == 7:
-                print(f"Día {i // 24 + 1}")
-            self.temperatura = random.uniform(15, 30)  # Temperatura aleatoria
-            self.humedad = random.uniform(30, 80)  # Humedad aleatoria
-            self.mostrar_invernadero()
-            self.invernadero = self.crecimiento_chiles()
-            time.sleep(1)
-            print("\n" + "-" * 20 + "\n")
+            invernadero.germinar_chiles()
+            invernadero.mostrar_invernadero()
 
-# Ejemplo de uso
-# Invernadero (filas, columnas, temperatura, humedad, materiales, tamano)
-invernadero = Invernadero(5, 5, 28, 70, ["Suelo", "Agua", "Abono"], 25)
-invernadero.simulacion_invernadero(48)  # Simula dos días (48 horas)
+            time.sleep(1)  # Simular una hora en 1 segundo
+
+if __name__ == "__main__":
+    main()
