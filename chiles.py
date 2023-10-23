@@ -1,5 +1,7 @@
 import random
 import time
+from SistemaSensoresActuadores import SensorTemperatura, ActuadorRiego, ActuadorVentilacion, ActuadorIluminacion
+
 
 class Invernadero:
     def __init__(self, filas, columnas):
@@ -55,14 +57,23 @@ def main():
     filas = 5
     columnas = 5
     invernadero = Invernadero(filas, columnas)
-
-    for dia in range(3):
+    
+    actuador_riego = ActuadorRiego()  # Instancia del actuador de riego
+    actuador_ventilacion = ActuadorVentilacion()  # Instancia del actuador de ventilación
+    actuador_iluminacion = ActuadorIluminacion()  # Instancia del actuador de iluminación
+    sensor = SensorTemperatura(None, actuador_riego, actuador_ventilacion, actuador_iluminacion)
+    
+    for dia in range(1):
         print(f"Día {dia + 1}:")
 
         for hora in range(1, 25):
             invernadero.establecer_condiciones_ambientales()
+            Tp = invernadero.condiciones_ambientales['temperatura']
+            print("La temperatura actual es: ", Tp)
+            resultado = sensor.detectarTemperatura(hora, Tp)
+            print("La temperatura nueva es: ", resultado)
+            invernadero.condiciones_ambientales['temperatura'] = resultado
             invernadero.mostrar_condiciones_ambientales(hora)
-            
             # Generar chiles en 3 ubicaciones aleatorias
             for _ in range(3):
                 fila = random.randint(0, filas - 1)
