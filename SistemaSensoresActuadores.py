@@ -1,9 +1,12 @@
-import pandas as pd
 import random
 
 class ActuadorRiego:
-    def activarse(self, señal, temp):
-        pass
+    def activarse(self, señal, humedad):
+        if señal == 1:
+            humedad = random.uniform(50, 70)
+            return humedad
+        else:
+            pass
 
 class ActuadorVentilacion:
     def activarse(self, señal, hora, temp):
@@ -28,9 +31,7 @@ class ActuadorIluminacion:
             pass
 
 class SensorTemperatura:
-    def __init__(self, db, actuador_riego, actuador_ventilacion, actuador_iluminacion):
-        self.db = db
-        self.actuador_riego = actuador_riego
+    def __init__(self, actuador_ventilacion, actuador_iluminacion):
         self.actuador_ventilacion = actuador_ventilacion
         self.actuador_iluminacion = actuador_iluminacion
 
@@ -56,3 +57,14 @@ class SensorTemperatura:
                 self.actuador_ventilacion.activarse(0, hora, tempt)
                 tempt = self.actuador_iluminacion.activarse(1, hora, tempt)
         return tempt
+    
+class SensorHumedad:
+    def __init__(self, actuador_riego):
+        self.actuador_riego = actuador_riego
+
+    def detectarHumedad(self, humedad):
+        if 50 <= humedad <= 70:
+            self.actuador_riego.activarse(0, humedad)
+        else:
+            humedad = self.actuador_riego.activarse(1, humedad)
+        return humedad

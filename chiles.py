@@ -1,6 +1,7 @@
 import random
 import time
-from SistemaSensoresActuadores import SensorTemperatura, ActuadorRiego, ActuadorVentilacion, ActuadorIluminacion
+from SistemaSensoresActuadores import SensorTemperatura, ActuadorVentilacion, ActuadorIluminacion
+from SistemaSensoresActuadores import SensorHumedad, ActuadorRiego
 
 
 class Invernadero:
@@ -61,18 +62,33 @@ def main():
     actuador_riego = ActuadorRiego()  # Instancia del actuador de riego
     actuador_ventilacion = ActuadorVentilacion()  # Instancia del actuador de ventilación
     actuador_iluminacion = ActuadorIluminacion()  # Instancia del actuador de iluminación
-    sensor = SensorTemperatura(None, actuador_riego, actuador_ventilacion, actuador_iluminacion)
+    sensorT = SensorTemperatura(actuador_ventilacion, actuador_iluminacion)
+    sensorH = SensorHumedad(actuador_riego)
     
-    for dia in range(1):
+    for dia in range(3):
         print(f"Día {dia + 1}:")
 
         for hora in range(1, 25):
+            #Se calculan las codiciones del invernadero
             invernadero.establecer_condiciones_ambientales()
+
+            #Se guarda la temperatura y si es necesario se activa los actuadores
             Tp = invernadero.condiciones_ambientales['temperatura']
-            print("La temperatura actual es: ", Tp)
-            resultado = sensor.detectarTemperatura(hora, Tp)
-            print("La temperatura nueva es: ", resultado)
+            print("Temperatura actual: ", Tp)
+            resultado = sensorT.detectarTemperatura(hora, Tp)
+
+            #Verificamos si cambio la temperatura y la actualizamos
             invernadero.condiciones_ambientales['temperatura'] = resultado
+
+            #Se guarda la humedad y si es necesario se activa los actuadores
+            Hm = invernadero.condiciones_ambientales['humedad']
+            print("Humedad actual: ", Hm)
+            resultado2 = sensorH.detectarHumedad(Hm)
+
+            #Verificamos si cambio la humedad y la actualizamos
+            invernadero.condiciones_ambientales['humedad'] = resultado2
+
+            #Muestra el invernadero
             invernadero.mostrar_condiciones_ambientales(hora)
             # Generar chiles en 3 ubicaciones aleatorias
             for _ in range(3):
