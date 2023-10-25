@@ -3,29 +3,23 @@ import random
 class ActuadorRiego:
     def activarse(self, señal, humedad):
         if señal == 1:
-            humedad = random.uniform(50, 70)
+            humedad = round(random.uniform(50, 70), 2)
             return humedad
         else:
             pass
 
 class ActuadorVentilacion:
-    def activarse(self, señal, hora, temp):
+    def activarse(self, señal, temp):
         if señal == 1:
-            if 7 <= hora <= 19:
-                temp = random.uniform(25, 30)
-            else:
-                temp = random.uniform(15, 20)
+            temp = round(random.uniform(25, 30), 2)
             return temp
         else:
             pass
 
 class ActuadorIluminacion:
-    def activarse(self, señal, hora, temp):
+    def activarse(self, señal, temp):
         if señal == 1:
-            if 7 <= hora <= 19:
-                temp = random.uniform(25, 30)
-            else:
-                temp = random.uniform(15, 20)
+            temp = round(random.uniform(25, 30), 2)
             return temp
         else:
             pass
@@ -35,27 +29,16 @@ class SensorTemperatura:
         self.actuador_ventilacion = actuador_ventilacion
         self.actuador_iluminacion = actuador_iluminacion
 
-    def detectarTemperatura(self, hora, tempt):
-        if 7 <= hora <= 19:
-            if 25 <= tempt <= 30:
-                self.actuador_ventilacion.activarse(0, hora, tempt)
-                self.actuador_iluminacion.activarse(0, hora, tempt)
-            elif tempt > 30:
-                tempt = self.actuador_ventilacion.activarse(1, hora, tempt)
-                self.actuador_iluminacion.activarse(0, hora, tempt)
-            elif tempt < 25:
-                self.actuador_ventilacion.activarse(0, hora, tempt)
-                tempt = self.actuador_iluminacion.activarse(1, hora, tempt)
-        elif hora < 7 or hora > 19:
-            if 15 <= tempt <= 20:
-                self.actuador_ventilacion.activarse(0, hora, tempt)
-                self.actuador_iluminacion.activarse(0, hora, tempt)
-            elif tempt > 20:
-                tempt = self.actuador_ventilacion.activarse(1, hora, tempt)
-                self.actuador_iluminacion.activarse(0, hora, tempt)
-            elif tempt < 15:
-                self.actuador_ventilacion.activarse(0, hora, tempt)
-                tempt = self.actuador_iluminacion.activarse(1, hora, tempt)
+    def detectarTemperatura(self, tempt):
+        if 25 <= tempt <= 30:
+            self.actuador_ventilacion.activarse(0, tempt)
+            self.actuador_iluminacion.activarse(0, tempt)
+        elif tempt > 30:
+            tempt = self.actuador_ventilacion.activarse(1, tempt)
+            self.actuador_iluminacion.activarse(0, tempt)
+        elif tempt < 25:
+            self.actuador_ventilacion.activarse(0, tempt)
+            tempt = self.actuador_iluminacion.activarse(1, tempt)
         return tempt
     
 class SensorHumedad:
