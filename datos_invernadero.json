@@ -1,0 +1,212 @@
+[
+    {
+        "Dia": 1,
+        "Temperatura Registrada": 20.71,
+        "Temperatura": 28.85,
+        "Humedad Registrada": 46.62,
+        "Humedad": 57.27
+    },
+    {
+        "Dia": 2,
+        "Temperatura Registrada": 18.57,
+        "Temperatura": 25.51,
+        "Humedad Registrada": 67.83,
+        "Humedad": 67.83
+    },
+    {
+        "Dia": 3,
+        "Temperatura Registrada": 23.93,
+        "Temperatura": 28.8,
+        "Humedad Registrada": 47.09,
+        "Humedad": 52.68
+    },
+    {
+        "Dia": 4,
+        "Temperatura Registrada": 26.16,
+        "Temperatura": 26.16,
+        "Humedad Registrada": 63.86,
+        "Humedad": 63.86
+    },
+    {
+        "Dia": 5,
+        "Temperatura Registrada": 17.37,
+        "Temperatura": 27.09,
+        "Humedad Registrada": 41.56,
+        "Humedad": 51.01
+    },
+    {
+        "Dia": 6,
+        "Temperatura Registrada": 21.7,
+        "Temperatura": 28.79,
+        "Humedad Registrada": 41.96,
+        "Humedad": 58.34
+    },
+    {
+        "Dia": 7,
+        "Temperatura Registrada": 15.33,
+        "Temperatura": 27.23,
+        "Humedad Registrada": 67.9,
+        "Humedad": 67.9
+    },
+    {
+        "Dia": 8,
+        "Temperatura Registrada": 17.22,
+        "Temperatura": 28.03,
+        "Humedad Registrada": 45.99,
+        "Humedad": 69.33
+    },
+    {
+        "Dia": 9,
+        "Temperatura Registrada": 20.19,
+        "Temperatura": 29.28,
+        "Humedad Registrada": 62.74,
+        "Humedad": 62.74
+    },
+    {
+        "Dia": 10,
+        "Temperatura Registrada": 20.6,
+        "Temperatura": 27.99,
+        "Humedad Registrada": 67.26,
+        "Humedad": 67.26
+    },
+    {
+        "Dia": 11,
+        "Temperatura Registrada": 19.93,
+        "Temperatura": 25.83,
+        "Humedad Registrada": 41.58,
+        "Humedad": 56.74
+    },
+    {
+        "Dia": 12,
+        "Temperatura Registrada": 22.09,
+        "Temperatura": 29.61,
+        "Humedad Registrada": 69.83,
+        "Humedad": 69.83
+    },
+    {
+        "Dia": 13,
+        "Temperatura Registrada": 19.56,
+        "Temperatura": 25.55,
+        "Humedad Registrada": 64.23,
+        "Humedad": 64.23
+    },
+    {
+        "Dia": 14,
+        "Temperatura Registrada": 26.17,
+        "Temperatura": 26.17,
+        "Humedad Registrada": 56.43,
+        "Humedad": 56.43
+    },
+    {
+        "Dia": 15,
+        "Temperatura Registrada": 24.79,
+        "Temperatura": 29.18,
+        "Humedad Registrada": 68.6,
+        "Humedad": 68.6
+    },
+    {
+        "Dia": 16,
+        "Temperatura Registrada": 26.35,
+        "Temperatura": 26.35,
+        "Humedad Registrada": 76.97,
+        "Humedad": 66.34
+    },
+    {
+        "Dia": 17,
+        "Temperatura Registrada": 25.8,
+        "Temperatura": 25.8,
+        "Humedad Registrada": 49.21,
+        "Humedad": 51.89
+    },
+    {
+        "Dia": 18,
+        "Temperatura Registrada": 16.73,
+        "Temperatura": 28.51,
+        "Humedad Registrada": 67.83,
+        "Humedad": 67.83
+    },
+    {
+        "Dia": 19,
+        "Temperatura Registrada": 19.97,
+        "Temperatura": 25.58,
+        "Humedad Registrada": 74.36,
+        "Humedad": 53.33
+    },
+    {
+        "Dia": 20,
+        "Temperatura Registrada": 22.35,
+        "Temperatura": 28.97,
+        "Humedad Registrada": 58.28,
+        "Humedad": 58.28
+    },
+    {
+        "Dia": 21,
+        "Temperatura Registrada": 21.97,
+        "Temperatura": 25.07,
+        "Humedad Registrada": 52.74,
+        "Humedad": 52.74
+    },
+    {
+        "Dia": 22,
+        "Temperatura Registrada": 16.09,
+        "Temperatura": 25.27,
+        "Humedad Registrada": 44.65,
+        "Humedad": 53.19
+    },
+    {
+        "Dia": 23,
+        "Temperatura Registrada": 17.28,
+        "Temperatura": 27.32,
+        "Humedad Registrada": 41.27,
+        "Humedad": 56.14
+    },
+    {
+        "Dia": 24,
+        "Temperatura Registrada": 20.78,
+        "Temperatura": 29.6,
+        "Humedad Registrada": 67.56,
+        "Humedad": 67.56
+    },
+    {
+        "Dia": 25,
+        "Temperatura Registrada": 29.94,
+        "Temperatura": 29.94,
+        "Humedad Registrada": 47.71,
+        "Humedad": 69.89
+    },
+    {
+        "Dia": 26,
+        "Temperatura Registrada": 15.59,
+        "Temperatura": 28.18,
+        "Humedad Registrada": 67.79,
+        "Humedad": 67.79
+    },
+    {
+        "Dia": 27,
+        "Temperatura Registrada": 28.74,
+        "Temperatura": 28.74,
+        "Humedad Registrada": 53.37,
+        "Humedad": 53.37
+    },
+    {
+        "Dia": 28,
+        "Temperatura Registrada": 15.95,
+        "Temperatura": 27.74,
+        "Humedad Registrada": 71.09,
+        "Humedad": 63.52
+    },
+    {
+        "Dia": 29,
+        "Temperatura Registrada": 20.24,
+        "Temperatura": 25.27,
+        "Humedad Registrada": 44.14,
+        "Humedad": 63.08
+    },
+    {
+        "Dia": 30,
+        "Temperatura Registrada": 29.42,
+        "Temperatura": 29.42,
+        "Humedad Registrada": 66.49,
+        "Humedad": 66.49
+    }
+]
