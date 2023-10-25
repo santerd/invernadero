@@ -1,4 +1,5 @@
 import pyodbc
+import json
 
 # Parámetros de conexión
 server = 'projectgreenhouse.database.windows.net'
@@ -10,18 +11,6 @@ driver= '{ODBC Driver 18 for SQL Server}'  # Asegúrate de tener el controlador 
 # Crear la cadena de conexión
 connection_string = f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}"
 
-# Sentencia SQL para crear la tabla
-codesql = """
-CREATE TABLE condiciones (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    Fecha DATE,
-    TemperaturaRegistrada FLOAT,
-    Temperatura FLOAT,
-    HumedadRegistrada FLOAT,
-    Humedad FLOAT
-)
-"""
-
 try:
     # Establecer la conexión
     conn = pyodbc.connect(connection_string)
@@ -29,12 +18,19 @@ try:
     
     # Crear un cursor
     cursor = conn.cursor()
+        
+    # Crea la consulta SQL de visualizacion
+    query = f"SELECT TOP (1000) * FROM condiciones"
     
     # Ejecutar la sentencia SQL para crear la tabla
-    cursor.execute(codesql)
-    conn.commit()
-
-    print("Tabla creada con éxito.")
+    cursor.execute(query)
+    
+    # Recuperar los resultados de la consulta
+    rows = cursor.fetchall()
+    
+    # Mostrar los resultados
+    for row in rows:
+        print(row)  # Esto mostrará cada fila de resultados en la salida
 
     # Cerrar la conexión
     cursor.close()
